@@ -9,4 +9,6 @@ public class CounterWordsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CounterWordsApplication.class, args);
 	}
+
+
 }
