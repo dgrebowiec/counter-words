@@ -14,7 +14,10 @@ class CounterWordsApplicationTest extends Specification {
         when:
             Map map = counterWordsProvider.counterWords(text);
         then:
-            map == [aa:4, cc:3, bb:1]
+            map.get("aa").getNumberRepeat() == 4
+            map.get("cc").getNumberRepeat() == 3
+            map.get("dew").getNumberRepeat() == 2
+
     }
 
     def "should be empty map if text is empty"() {

@@ -11,11 +11,15 @@ class FileDataSourceTest extends Specification {
 
     def "should name"() {
         given:
-            FileDataSource dataSource = new FileDataSource();
+            FileDataSource dataSource = new FileDataSource("file_import");
+            dataSource.readFile();
             CounterWordsProvider counterWordsProvider = new CounterWordsProvider();
+
         when:
             Map map = counterWordsProvider.counterWords(dataSource.getText());
         then:
-            map == [cc:7, aa:4, bb:1]
+            map.get("aa").getNumberRepeat() == 4
+            map.get("cc").getNumberRepeat() == 3
+            map.get("dew").getNumberRepeat() == 2
     }
 }

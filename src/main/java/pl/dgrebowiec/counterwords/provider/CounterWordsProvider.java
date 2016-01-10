@@ -1,17 +1,14 @@
 package pl.dgrebowiec.counterwords.provider;
 
 import org.springframework.stereotype.Component;
+import pl.dgrebowiec.counterwords.domain.CounterWord;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Dariusz Grebowiec <dariusz.grebowiec@coi.gov.pl>
@@ -20,50 +17,50 @@ import java.util.stream.Stream;
 @Component
 public class CounterWordsProvider {
 
+    private int countWords = 0;
+    private Map<String, CounterWord> words = new LinkedHashMap<>();
+
     private List<String> getWords(String text) {
         List<String> words = new ArrayList<>();
-        if(text == null) return words;
+        if (text == null) return words;
 
         Pattern pattern = Pattern.compile("[a-z]+");
         Matcher matcher = pattern.matcher(text.toLowerCase());
         while (matcher.find()) {
+            if(matcher.group().length() > 3)
             words.add(matcher.group());
         }
+        countWords = words.size();
         return words;
     }
 
-    private Map<String, Integer> getGroupAndSortedWords(List<String> words) {
-        Map<String, Integer> groupWords = new TreeMap<>();
-        for (String word : words) {
+    private Map<String, CounterWord> getGroupAndSortedWords(List<String> wordsString) {
+        Map<String, CounterWord> groupWords = new LinkedHashMap<>();
+        for (String word : wordsString) {
             if (groupWords.containsKey(word)) {
-                groupWords.put(word, groupWords.get(word) + 1);
+                groupWords.put(word, new CounterWord(word, groupWords.get(word).getNumberRepeat() + 1));
             } else {
-                groupWords.put(word, 1);
+                groupWords.put(word, new CounterWord(word, 1));
             }
         }
-      /* groupWords = groupWords.entrySet().stream()
-                .sorted(Comparator.comparing(Map.Entry::getValue))
-               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-               */
+        groupWords.entrySet().stream()
+                .sorted(Map.Entry.<String, CounterWord>comparingByValue().reversed())
+                        // .sorted(Comparator.comparing(Map.Entry::getValue))
+                .forEach(s -> words.put(s.getKey(), s.getValue()));
 
-        return sortByValue(groupWords);
+        return words;
     }
 
-    public Map<String, Integer> counterWords(String text) {
+
+    public Map<String, CounterWord> counterWords(String text) {
         return getGroupAndSortedWords(getWords(text));
     }
 
-    private <K, V extends Comparable<? super V>> Map<K, V>
-    sortByValue( Map<K, V> map )
-    {
-        Map<K,V> result = new LinkedHashMap<>();
-        Stream<Map.Entry<K,V>> st = map.entrySet().stream();
-
-        st.sorted(Comparator.comparing(e -> e.getValue()))
-                .forEachOrdered(e ->result.put(e.getKey(),e.getValue()));
-
-        return result;
+    public void convertPercent() {
+        words.entrySet().stream().
+                forEach(s -> s.getValue().setPercent((s.getValue().getNumberRepeat() / (double) countWords) * 100d));
     }
+
 }
 
 

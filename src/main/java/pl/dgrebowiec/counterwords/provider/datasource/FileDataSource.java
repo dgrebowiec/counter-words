@@ -1,5 +1,9 @@
 package pl.dgrebowiec.counterwords.provider.datasource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -10,22 +14,19 @@ import java.util.stream.Stream;
 /**
  * @author Dariusz Grebowiec <dariusz.grebowiec@coi.gov.pl>
  */
+@Component
 public class FileDataSource implements DataSource {
 
     private String text;
-    private String path;
+    private  String path;
 
-
-    public FileDataSource() {
-        try {
-            readFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Autowired
+    public FileDataSource(@Value("${file.import.path}")String path) throws IOException {
+        this.path = path;
     }
 
-    private void readFile() throws IOException {
-        Path path = Paths.get("file_import");
+    public void readFile() throws IOException {
+        Path path = Paths.get(this.path);
 
         StringBuilder sb = new StringBuilder();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
@@ -35,12 +36,16 @@ public class FileDataSource implements DataSource {
                 }
             }
         }
-
         text = sb.toString();
     }
 
     @Override
     public String getText() {
+        try {
+            readFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return text;
     }
 }
