@@ -1,0 +1,38 @@
+WHY VAGRANT?
+Vagrant provides easy to configure, reproducible, and portable work environments built on top of industry-standard technology and controlled by a single consistent workflow to help maximize the productivity and flexibility of you and your team.
+
+To achieve its magic, Vagrant stands on the shoulders of giants. Machines are provisioned on top of VirtualBox, VMware, AWS, or any other provider. Then, industry-standard provisioning tools such as shell scripts, Chef, or Puppet, can be used to automatically install and configure software on the machine.
+
+HOW VAGRANT BENEFITS YOU
+
+If you're a developer, Vagrant will isolate dependencies and their configuration within a single disposable, consistent environment, without sacrificing any of the tools you're used to working with (editors, browsers, debuggers, etc.). Once you or someone else creates a single Vagrantfile, you just need to vagrant up and everything is installed and configured for you to work. Other members of your team create their development environments from the same configuration, so whether you're working on Linux, Mac OS X, or Windows, all your team members are running code in the same environment, against the same dependencies, all configured the same way. Say goodbye to "works on my machine" bugs.
+
+If you're an operations engineer, Vagrant gives you a disposable environment and consistent workflow for developing and testing infrastructure management scripts. You can quickly test things like shell scripts, Chef cookbooks, Puppet modules, and more using local virtualization such as VirtualBox or VMware. Then, with the same configuration, you can test these scripts on remote clouds such as AWS or RackSpace with the same workflow. Ditch your custom scripts to recycle EC2 instances, stop juggling SSH prompts to various machines, and start using Vagrant to bring sanity to your life.
+
+If you're a designer, Vagrant will automatically set everything up that is required for that web app in order for you to focus on doing what
+
+Vagrant 1.1+ provides full backwards compatibility for valid Vagrant 1.0.x Vagrantfiles which don't use plugins. After installing Vagrant 1.1, your 1.0.x environments should continue working without modifications, and existing running machines will continue to be managed properly.
+
+This compatibility layer will remain in Vagrant up to and including Vagrant 2.0. It may still exist after that, but Vagrant's compatibility promise is only for two versions. Seeing that major Vagrant releases take years to develop and release, it is safe to stick with your version 1.0.x Vagrantfile for the time being.
+
+If you use any Vagrant 1.0.x plugins, you must remove references to these from your Vagrantfile prior to upgrading. Vagrant 1.1+ introduces a new plugin format that will protect against this sort of incompatibility from ever happening again.
+
+If your Vagrantfile doesn't just work with 1.1 and doesn't use any plugins, please report a bug.
+
+FOR 1.X
+
+Backwards compatibility between 1.x is not promised, and Vagrantfile syntax stability isn't promised until 2.0 final. Any backwards incompatibilities within 1.x will be clearly documented.
+
+This is similar to how Vagrant 0.x was handled. In practice, Vagrant 0.x only introduced a handful of backwards incompatibilities during the entire development cycle, but the possibility of backwards incompatibilities is made clear so people aren't surprised.
+
+Vagrant 2.0 final will have a stable Vagrantfile format that will remain backwards compatible, just as 1.0 is considered stable.
+you do best: design. Once a developer configures Vagrant, you don't need to worry about how to get that app running ever again. No more bothering other developers to help you fix your environment so you can test designs. Just check out the code, vagrant up, and start designing.
+
+
+The upgrade process from 1.0.x to 1.x is straightforward. Vagrant is quite backwards compatible with Vagrant 1.0.x, so you can simply reinstall Vagrant over your previous installation by downloading the latest package and installing it using standard procedures for your operating system.
+
+As the backwards compatibility page says, Vagrant 1.0.x plugins will not work with Vagrant 1.1+. Many of these plugins have been updated to work with newer versions of Vagrant, so you can look to see if they've been updated. If not however, you'll have to remove them before upgrading.
+
+It is recommended you remove all plugins before upgrading, and then slowly add back the plugins. This usually makes for a smoother upgrade process.
+
+However, if your version of Vagrant was installed via RubyGems, then you must gem uninstall the old version prior to installing the package for the latest version of Vagrant. The RubyGems-based installation method has been removed.
