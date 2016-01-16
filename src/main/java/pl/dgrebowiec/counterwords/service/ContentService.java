@@ -7,7 +7,6 @@ import pl.dgrebowiec.counterwords.provider.CounterWordsProvider;
 import pl.dgrebowiec.counterwords.provider.datasource.DataSource;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -26,8 +25,9 @@ public class ContentService {
     }
 
     public List<CounterWord> getCounterWords() {
-
-        return counterWordsProvider.counterWords(dataSource.getText()).entrySet().stream().map(s -> s.getValue()).collect(Collectors.toList());
+        counterWordsProvider.counterWords(dataSource.getText());
+        counterWordsProvider.convertPercent();
+        return counterWordsProvider.getWords().entrySet().stream().map(s -> s.getValue()).collect(Collectors.toList());
     }
 
 

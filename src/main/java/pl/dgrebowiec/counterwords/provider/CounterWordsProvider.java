@@ -61,6 +61,9 @@ public class CounterWordsProvider {
                 forEach(s -> s.getValue().setPercent((s.getValue().getNumberRepeat() / (double) countWords) * 100d));
     }
 
+    public Map<String, CounterWord> getWords() {
+        return words;
+    }
 }
 
 

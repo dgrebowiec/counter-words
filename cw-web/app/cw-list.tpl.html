@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<h1>test </h1>
+<div> <label> {{dupa}} </label></div>
+<div> <input [(ngModel)]="dupa" placeholder="rower"> </div>
+<button (click)="getWords()">wczytaj slowa</button>
+<div>
+    <h1>ssWwswsordeeeeees</h1>
+    <!--{{words}}-->
+    <table>
+        <tr>
+            <td>Słowo</td>
+            <td>Ilość wystąpień</td>
+            <td>procentowo</td>
+        </tr>
+        <tr *ngFor="#word of words">
+            <td>{{word.word}}</td>
+            <td>{{word.numberRepeat}}</td>
+            <td>{{word.percent}}</td>
+        </tr>
+    </table>
+</div>
