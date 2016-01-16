@@ -1,6 +1,7 @@
 package pl.dgrebowiec.counterwords.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ class CounterWordRest {
         this.contentService = contentService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.GET)
     public List<CounterWord> getCounterWords() {
         return contentService.getCounterWords();

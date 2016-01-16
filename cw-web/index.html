@@ -5,23 +5,30 @@
     <title>Angular 2 QuickStart</title>
 
     <!-- 1. Load libraries -->
-    <script src="../node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="../node_modules/angular2/bundles/http.dev.js"></script>
-    <script src="https://code.angularjs.org/2.0.0-beta.0/angular2-polyfills.js"></script>
+
+    <!--<script src="node_modules/angular2/bundles/http.dev.js"></script>-->
+    <script src="node_modules/es6-shim/es6-shim.js"></script>
+    <script src="node_modules/es6-promise/dist/es6-promise.js"></script>
+
+    <!--<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>-->
+    <!--<script src="node_modules/angular2/bundles/angular2.js"></script>-->
+    <!--<script src="node_modules/rxjs/bundles/Rx.js"></script>-->
+    <!--<script src="node_modules/angular2/bundles/upgrade.dev.js"></script>-->
+
     <script src="https://code.angularjs.org/tools/system.js"></script>
     <script src="https://code.angularjs.org/tools/typescript.js"></script>
+
+    <script src="https://code.angularjs.org/2.0.0-beta.0/angular2-polyfills.js"></script>
     <script src="https://code.angularjs.org/2.0.0-beta.0/Rx.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.0/http.dev.js"></script>
     <script src="https://code.angularjs.org/2.0.0-beta.0/angular2.dev.js"></script>
 
     <!-- 2. Configure SystemJS -->
     <script>
         System.config({
-            //use typescript for compilation
-            //typescript compiler options
             transpiler: 'typescript',
             typescriptOptions: { emitDecoratorMetadata: true },
-            packages: {'app': {defaultExtension: 'ts'}},
-
+            packages: {'app': {defaultExtension: 'ts'}}
         });
         System.import('app/boot')
                 .then(null, console.error.bind(console));
