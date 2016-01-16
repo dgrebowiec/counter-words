@@ -7,21 +7,7 @@ import 'rxjs/Rx';
 @Component({
     selector: 'my-app',
     viewProviders: [HTTP_PROVIDERS],
-    template: `
-        <h1>test </h1>
-        <div> <label> {{dupa}} </label></div>
-        <div> <input [(ngModel)]="dupa" placeholder="rower"> </div>
-        <button (click)="getWords()">wczytaj slowa</button>
-        <div>
-          <h1>Wordeeeeees</h1>
-          <!--{{words}}-->
-          <ul>
-            <li *ngFor="#word of words">
-              {{word.word}}
-            </li>
-          </ul>
-    </div>
-    `,
+    templateUrl: 'app/cw-list.tpl.html',
     directives: [NgFor]
 })
 
