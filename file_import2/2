@@ -11,7 +11,7 @@ If you're an operations engineer, Vagrant gives you a disposable environment and
 
 If you're a designer, Vagrant will automatically set everything up that is required for that web app in order for you to focus on doing what
 
-Vagrant 1.1+ provides full backwards compatibility for valid Vagrant 1.0.x Vagrantfiles which don't use plugins. After installing Vagrant 1.1, your 1.0.x environments should continue working without modifications, and existing running machines will continue to be managed properly.
+Vagrant 1.1+ prsdfsdfovides full backwards compatibility for valid Vagrant 1.0.x Vagrantfiles which don't use plugins. After installing Vagrant 1.1, your 1.0.x environments should continue working without modifications, and existing running machines will continue to be managed properly.
 
 This compatibility layer will remain in Vagrant up to and including Vagrant 2.0. It may still exist after that, but Vagrant's compatibility promise is only for two versions. Seeing that major Vagrant releases take years to develop and release, it is safe to stick with your version 1.0.x Vagrantfile for the time being.
 
