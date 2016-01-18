@@ -4,14 +4,9 @@ module.exports = function (grunt) {
             base: {
                 src: ['app/*.ts'],
                 dest: 'build',
-                options: {target: 'ES5', module: 'commonjs', sourceMap: true, watch: {after: ['copy'], atBegin: true}, connect: {
-                    options: {
-                        port: process.env.PORT || 3000,
-                        base: 'dist/',
-                    },
+                options: {target: 'ES5', module: 'commonjs', sourceMap: true, watch: {after: ['copy'], atBegin: true}
 
-                    all: {},
-                },}
+                }
             }
         },
         copy: {
