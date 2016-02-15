@@ -7,8 +7,8 @@
 	<artifactId>counter-words</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-		<module>cw-frontend</module>
-		<module>cw-backend</module>
+		<module>frontend</module>
+		<module>backend</module>
 	</modules>
 	<packaging>pom</packaging>
 
