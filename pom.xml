@@ -7,7 +7,8 @@
 	<artifactId>counter-words</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-		<module>web</module>
+		<module>cw-frontend</module>
+		<module>cw-backend</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -53,16 +54,27 @@
 			<artifactId>spock-spring</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!--morfologik-->
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-morfologik</artifactId>
+			<version>5.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>4.10.2</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.5.2</version>
+		</dependency>
+
+
 	</dependencies>
 	
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+
 	
 
 </project>

@@ -11,7 +11,7 @@ class FileDataSourceTest extends Specification {
 
     def "should name"() {
         given:
-            FileDataSource dataSource = new FileDataSource("file_import");
+            FileDataSource dataSource = new FileDataSource("../file_import");
             dataSource.readFile();
             CounterWordsProvider counterWordsProvider = new CounterWordsProvider();
 

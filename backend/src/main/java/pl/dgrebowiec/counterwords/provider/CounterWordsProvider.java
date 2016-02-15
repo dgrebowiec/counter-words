@@ -27,7 +27,7 @@ public class CounterWordsProvider {
         Pattern pattern = Pattern.compile("[a-z]+");
         Matcher matcher = pattern.matcher(text.toLowerCase());
         while (matcher.find()) {
-            if(matcher.group().length() > 3)
+          //  if(matcher.group().length() > 3)
             words.add(matcher.group());
         }
         countWords = words.size();
@@ -64,6 +64,8 @@ public class CounterWordsProvider {
     public Map<String, CounterWord> getWords() {
         return words;
     }
+
+
 }
 
 

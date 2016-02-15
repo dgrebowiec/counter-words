@@ -11,7 +11,7 @@ import spock.lang.Specification
 class ContentTest extends Specification {
     CounterWordsProvider counterWordsProvider = new CounterWordsProvider();
     String text = "aa bb aa cc aa aa cc cc dew dew"
-    FileDataSource dataSource = new FileDataSource("file_import2")
+    FileDataSource dataSource = new FileDataSource("../file_import2")
 
     ContentService content = new ContentService(counterWordsProvider, dataSource)
 

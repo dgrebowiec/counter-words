@@ -24,7 +24,7 @@ export class AppComponent {
 
     getWords() {
 
-        this.http.get('http://localhost:8080/words')
+        this.http.get('http://localhost:8090/words')
             .subscribe(
                 res => {this.words = res.json(); },
                 err => console.error('There was an error: ' + err)

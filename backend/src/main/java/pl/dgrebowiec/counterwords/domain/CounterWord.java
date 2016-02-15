@@ -19,4 +19,5 @@ public class CounterWord implements Comparable<CounterWord> {
         return Long.compare(this.numberRepeat, word.getNumberRepeat());
     }
 
+
 }
