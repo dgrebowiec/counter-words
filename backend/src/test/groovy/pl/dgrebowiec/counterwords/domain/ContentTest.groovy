@@ -13,8 +13,6 @@ class ContentTest extends Specification {
     String text = "aa bb aa cc aa aa cc cc dew dew"
     FileDataSource dataSource = new FileDataSource("../file_import2")
 
-    ContentService content = new ContentService(counterWordsProvider, dataSource)
-
     def "should name"() {
 
         when:

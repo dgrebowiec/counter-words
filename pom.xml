@@ -54,8 +54,18 @@
 			<artifactId>spock-spring</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!--morfologik-->
+		<!-- database -->
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+		<!--morfologik-->
+		<!--<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-analyzers-morfologik</artifactId>
 			<version>5.4.0</version>
@@ -69,7 +79,7 @@
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
 			<version>3.5.2</version>
-		</dependency>
+		</dependency>-->
 
 
 	</dependencies>
