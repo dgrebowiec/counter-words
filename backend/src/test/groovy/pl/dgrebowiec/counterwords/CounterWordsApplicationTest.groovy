@@ -1,6 +1,5 @@
 package pl.dgrebowiec.counterwords
 
-import org.apache.lucene.analysis.morfologik.MorfologikAnalyzer
 import pl.dgrebowiec.counterwords.provider.CounterWordsProvider
 import spock.lang.Specification
 /**
@@ -35,8 +34,5 @@ class CounterWordsApplicationTest extends Specification {
             map == [:]
     }
 
-    def "morfologic"() {
-       // MorfologikAnalyzer ma = new MorfologikAnalyzer()
-      //  EnglishLemmaAnalyzer analizer
-    }
+
 }
