@@ -16,6 +16,7 @@ import 'rxjs/Rx';
 export class AppComponent {
 
  words = [];
+    buttonLoadWords = "Wczytaj";
 
     constructor(public http: Http) {
        // header.append('Access-Control-Allow-Origin', '*');
@@ -23,10 +24,12 @@ export class AppComponent {
     }
 
     getWords() {
+        this.buttonLoadWords = "Wczytywanie...";
         this.http.get('http://localhost:8090/words')
             .subscribe(
                 res => {this.words = res.json(); },
-                err => console.error('There was an error: ' + err)
+                err => console.error('There was an error: ' + err) ,
+                () => this.buttonLoadWords = "Wczytaj"
         );
     };
 
