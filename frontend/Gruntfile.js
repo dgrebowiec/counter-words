@@ -2,11 +2,17 @@ module.exports = function (grunt) {
     grunt.initConfig({
         typescript: {
             base: {
-                src: ['app/*.ts'],
+                src: ['app/*'],
                 dest: 'build',
-                options: {target: 'ES5', module: 'commonjs', sourceMap: true, watch: {after: ['copy'], atBegin: true}
-
+                options: {
+                    target: 'ES5', module: 'commonjs', sourceMap: true,
                 }
+            }
+        },
+        watch: {
+
+            src: {
+                files: ['app/*','Gruntfile.js', 'index.html'],
             }
         },
         copy: {
@@ -31,6 +37,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-typescript');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.registerTask("default", ['connect:server', 'typescript']);
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.registerTask("default", ['connect:server','typescript']);
     grunt.registerTask("build", ['connect:server', 'typescript']);
 };
