@@ -1,12 +1,16 @@
 package pl.dgrebowiec.counterwords.service;
 
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.NonTransientDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.dgrebowiec.counterwords.domain.entity.Learn;
 import pl.dgrebowiec.counterwords.domain.entity.Translate;
 import pl.dgrebowiec.counterwords.domain.entity.Word;
+import pl.dgrebowiec.counterwords.repository.LearnRepository;
 import pl.dgrebowiec.counterwords.repository.TranslateRepository;
+import pl.dgrebowiec.counterwords.repository.WordRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,15 +23,35 @@ import java.util.stream.Collectors;
 public class PersistenceService {
 
     private TranslateRepository translateRepository;
+    private WordRepository wordRepository;
+    private LearnRepository learnRepository;
 
     @Autowired
-    public PersistenceService(TranslateRepository translateRepository) {
+    public PersistenceService(
+            TranslateRepository translateRepository,
+            WordRepository wordRepository,
+            LearnRepository learnRepository) {
         this.translateRepository = translateRepository;
+        this.wordRepository = wordRepository;
+        this.learnRepository = learnRepository;
     }
 
+    @Transactional
+    public void saveLearn(@NonNull final String word) {
+        Translate translate = translateRepository.findByValue(word);
+        if(translate == null) throw new RuntimeException("nie znaleziono slowa "+word);
+        Learn learn = learnRepository.findByWord_WordId(translate.getWord().getWordId());
+        if (learn == null) {
+            learn = new Learn();
+        }
+        learn.setLearned(!learn.getLearned());
+        learn.setWord(translate.getWord());
+        learnRepository.save(learn);
+
+    }
 
     @Transactional
-    public void saveWords(List<String> wordList) {
+    public void saveWords(final List<String> wordList) {
         for(String value : getDontExistWords(wordList)) {
             try {
                 saveWord(value);
@@ -47,7 +71,7 @@ public class PersistenceService {
     }
 
 
-    public void saveWord(String value) throws NonTransientDataAccessException {
+    public void saveWord(final String value) throws NonTransientDataAccessException {
 
         Translate translate = new Translate();
         translate.setWord(new Word());

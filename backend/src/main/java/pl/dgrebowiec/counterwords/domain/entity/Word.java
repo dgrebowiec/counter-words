@@ -2,6 +2,7 @@ package pl.dgrebowiec.counterwords.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class Word {
     private Long wordId;
 
     @OneToMany
-//    @JoinColumn(name = "translate_id")
+    @JoinColumn(name = "translateId")
     private List<Translate> translateList = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "learnId")
+    private List<Learn> learnList = new ArrayList<>();
 }

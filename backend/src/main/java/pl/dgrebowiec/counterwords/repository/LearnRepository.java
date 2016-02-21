@@ -1,15 +1,14 @@
 package pl.dgrebowiec.counterwords.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.dgrebowiec.counterwords.domain.entity.Word;
+import pl.dgrebowiec.counterwords.domain.entity.Learn;
 
 /**
  * User: mgalezewska
- * Date: 2016-02-15
+ * Date: 2016-02-20
  */
 @Repository
-public interface WordRepository extends JpaRepository<Word, Long> {
-
+public interface LearnRepository extends JpaRepository<Learn, Long> {
+    Learn findByWord_WordId(Long wordId);
 }

@@ -15,7 +15,8 @@ import 'rxjs/Rx';
 @Injectable()
 export class AppComponent {
 
- words = [];
+    words = [];
+    knownedWords = [];
     buttonLoadWords = "Wczytaj";
 
     constructor(public http: Http) {
@@ -35,6 +36,12 @@ export class AppComponent {
 
     saveWords() {
         this.http.put('http://localhost:8090/words').subscribe();
+    };
+
+    learnedWord(word) {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post('http://localhost:8090/words/', word,{headers:headers}).subscribe();
     }
     dupa = 'dupa100';
 }

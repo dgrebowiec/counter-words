@@ -19,15 +19,15 @@ public class Learn {
     private Long learnId;
 
     @ManyToOne
-    @JoinColumn(name = "word_id")
+    @JoinColumn(name = "wordId")
     private Word word;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private User user;
 
     @Column
-    private Boolean learned;
+    private Boolean learned = false;
 
 
 }

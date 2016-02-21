@@ -21,7 +21,7 @@ public class Translate {
     private Long translateId;
 
     @ManyToOne(cascade={CascadeType.PERSIST})
-    @JoinColumn( name = "word_id")
+    @JoinColumn( name = "wordId")
     private Word word;
 
     @Column

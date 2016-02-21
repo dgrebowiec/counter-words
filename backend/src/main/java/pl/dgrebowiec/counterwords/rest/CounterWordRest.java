@@ -1,10 +1,7 @@
 package pl.dgrebowiec.counterwords.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.dgrebowiec.counterwords.domain.CounterWord;
 import pl.dgrebowiec.counterwords.service.ContentService;
 import pl.dgrebowiec.counterwords.service.PersistenceService;
@@ -18,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/words")
+@CrossOrigin
 class CounterWordRest {
 
     private WebServices webService;
@@ -27,15 +25,18 @@ class CounterWordRest {
         this.webService = webService;
     }
 
-    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET)
     public List<CounterWord> getCounterWords() {
         return webService.getContentService().getCounterWords();
     }
 
-    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT)
     public void saveWords() {
         webService.saveWords();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void learnedWord(@RequestBody String word) {
+        webService.getPersistenceService().saveLearn(word);
     }
 }

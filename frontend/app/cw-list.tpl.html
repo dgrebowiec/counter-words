@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<button type="button" class="btn btn-primary" (click)="getWords()">wczytaj slowa</button>
+<div class="container">
+<button type="button" class="btn btn-primary" (click)="getWords()" >{{buttonLoadWords}}</button>
 <button type="button" class="btn btn-primary" (click)="saveWords()">zapisz slowa</button>
-<div class="container-fluid">
-<table class="table table-striped table-bordered table-hover">
+
+<table class="table table-condensed table-bordered table-hover">
     <tr class="info">
+        <td>Znam</td>
         <td>Słowo</td>
         <td>Ilość wystcąpień</td>
         <td>procentowo</td>
 
     </tr>
     <tr *ngFor="#word of words">
+        <td><input type="checkbox" (change)="learnedWord(word.word)"></td>
         <td>{{word.word}}</td>
         <td>{{word.numberRepeat}}</td>
         <td>

@@ -1,5 +1,6 @@
 package pl.dgrebowiec.counterwords.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.dgrebowiec.counterwords.domain.entity.Translate;
@@ -11,9 +12,8 @@ import java.util.List;
  * Date: 2016-02-16
  */
 @Repository
-public interface TranslateRepository extends CrudRepository<Translate, Long> {
-    @Override
-    Translate save(Translate s);
-
+public interface TranslateRepository extends JpaRepository<Translate, Long> {
     List<Translate> findByLanguageAndValueIn(String language, List<String> valueList);
+
+    Translate findByValue(String word);
 }
