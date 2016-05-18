@@ -12,6 +12,7 @@ import pl.dgrebowiec.counterwords.repository.LearnRepository;
 import pl.dgrebowiec.counterwords.repository.TranslateRepository;
 import pl.dgrebowiec.counterwords.repository.WordRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,8 +63,9 @@ public class PersistenceService {
     }
 
     @Transactional
-    private List<String> getDontExistWords(List<String> wordList) {
+    private List<String> getDontExistWords(final List<String> wordList) {
         List<Translate> translateList = translateRepository.findByLanguageAndValueIn("PL", wordList);
+        getLearnedWords(wordList);
          wordList.removeAll(translateList
                 .stream().map(s -> s.getValue()).collect(Collectors.toList()));
         return wordList;
@@ -78,6 +80,13 @@ public class PersistenceService {
         translate.setLanguage("PL");
         translate.setValue(value);
         translateRepository.save(translate);
+    }
+
+    public List<String> getLearnedWords(final List<String> words) {
+        List<String> learnedWordList = new ArrayList<>();
+
+        translateRepository.findByWord_LearnList_LearnedTrueAndLanguageAndValueIn("PL", words);
+        return learnedWordList;
     }
 
 

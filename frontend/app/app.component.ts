@@ -15,7 +15,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class AppComponent {
 
-    words = [];
+    counterWords = [];
     knownedWords = [];
     buttonLoadWords = "Wczytaj";
 
@@ -28,7 +28,7 @@ export class AppComponent {
         this.buttonLoadWords = "Wczytywanie...";
         this.http.get('http://localhost:8090/words')
             .subscribe(
-                res => {this.words = res.json(); },
+                res => {this.counterWords = res.json(); },
                 err => console.error('There was an error: ' + err) ,
                 () => this.buttonLoadWords = "Wczytaj"
         );
