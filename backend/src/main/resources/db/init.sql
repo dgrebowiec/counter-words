@@ -24,7 +24,7 @@ CREATE TABLE translate (
   language VARCHAR,
 
   FOREIGN KEY (word_id) REFERENCES word (word_id)
-)
+);
 
 
 CREATE UNIQUE INDEX translate_uniq_idx ON translate (value, language);
