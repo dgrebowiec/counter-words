@@ -16,7 +16,7 @@ class FileDataSourceTest extends Specification {
             CounterWordsProvider counterWordsProvider = new CounterWordsProvider();
 
         when:
-            Map map = counterWordsProvider.counterWords(dataSource.getText());
+            Map map = counterWordsProvider.counterWordMap(dataSource.getText());
         then:
             map.get("aa").getNumberRepeat() == 4
             map.get("cc").getNumberRepeat() == 3

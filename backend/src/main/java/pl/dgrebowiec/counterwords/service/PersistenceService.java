@@ -40,7 +40,9 @@ public class PersistenceService {
     @Transactional
     public void saveLearn(@NonNull final String word) {
         Translate translate = translateRepository.findByValue(word);
-        if(translate == null) throw new RuntimeException("nie znaleziono slowa "+word);
+        if(translate == null) {
+         translate = saveWord(word);
+        }
         Learn learn = learnRepository.findByWord_WordId(translate.getWord().getWordId());
         if (learn == null) {
             learn = new Learn();
@@ -62,6 +64,11 @@ public class PersistenceService {
         }
     }
 
+    /**
+     * Z przekazanej listy zwraca tylko te slowa, ktorych nie ma w bazie
+     * @param wordList
+     * @return
+     */
     @Transactional
     private List<String> getDontExistWords(final List<String> wordList) {
         List<Translate> translateList = translateRepository.findByLanguageAndValueIn("PL", wordList);
@@ -73,13 +80,14 @@ public class PersistenceService {
     }
 
 
-    public void saveWord(final String value) throws NonTransientDataAccessException {
+    public Translate saveWord(final String value) throws NonTransientDataAccessException {
 
         Translate translate = new Translate();
         translate.setWord(new Word());
         translate.setLanguage("PL");
         translate.setValue(value);
         translateRepository.save(translate);
+        return translate;
     }
 
     public List<String> getLearnedWords(final List<String> words) {

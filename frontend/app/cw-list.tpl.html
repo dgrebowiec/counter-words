@@ -12,7 +12,7 @@
 
     </tr>
     <tr *ngFor="#cw of counterWords">
-        <td><input type="checkbox" (change)="learnedWord(word.word)"></td>
+        <td><input type="checkbox" (change)="learnedWord(cw.word)"></td>
         <td>{{cw.word}}</td>
         <td>{{cw.numberRepeat}}</td>
         <td>

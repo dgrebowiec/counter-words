@@ -12,7 +12,7 @@ class CounterWordsApplicationTest extends Specification {
 
     def "should be grouped and sorted words"() {
         when:
-            Map map = counterWordsProvider.counterWords(text);
+            Map map = counterWordsProvider.counterWordMap(text);
         then:
             map.get("aa").getNumberRepeat() == 4
             map.get("cc").getNumberRepeat() == 3
@@ -22,14 +22,14 @@ class CounterWordsApplicationTest extends Specification {
 
     def "should be empty map if text is empty"() {
         when:
-            Map map = counterWordsProvider.counterWords("")
+            Map map = counterWordsProvider.counterWordMap("")
         then:
             map == [:]
     }
 
     def "should be empty map if text is null"() {
         when:
-            Map map = counterWordsProvider.counterWords(null)
+            Map map = counterWordsProvider.counterWordMap(null)
         then:
             map == [:]
     }

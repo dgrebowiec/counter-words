@@ -17,7 +17,7 @@ class ContentTest extends Specification {
 
         when:
             dataSource.readFile()
-            Map map = counterWordsProvider.counterWords(dataSource.getText())
+            Map map = counterWordsProvider.counterWordMap(dataSource.getText())
             counterWordsProvider.convertPercent();
         then:
             1==1

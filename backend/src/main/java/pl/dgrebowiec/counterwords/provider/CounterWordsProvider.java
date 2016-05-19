@@ -18,9 +18,9 @@ import java.util.regex.Pattern;
 public class CounterWordsProvider {
 
     private int countWords = 0;
-    private Map<String, CounterWord> words = new LinkedHashMap<>();
+    private Map<String, CounterWord> wordMap = new LinkedHashMap<>();
 
-    private List<String> getWords(String text) {
+    private List<String> getWordMap(String text) {
         List<String> words = new ArrayList<>();
         if (text == null) return words;
 
@@ -34,7 +34,7 @@ public class CounterWordsProvider {
         return words;
     }
 
-    private Map<String, CounterWord> getGroupAndSortedWords(List<String> wordsString) {
+    private Map<String, CounterWord> getGroupAndSortedWordMap(List<String> wordsString) {
         Map<String, CounterWord> groupWords = new LinkedHashMap<>();
         for (String word : wordsString) {
             if (groupWords.containsKey(word)) {
@@ -46,23 +46,23 @@ public class CounterWordsProvider {
         groupWords.entrySet().stream()
                 .sorted(Map.Entry.<String, CounterWord>comparingByValue().reversed())
                         // .sorted(Comparator.comparing(Map.Entry::getValue))
-                .forEach(s -> words.put(s.getKey(), s.getValue()));
+                .forEach(s -> wordMap.put(s.getKey(), s.getValue()));
 
-        return words;
+        return wordMap;
     }
 
 
-    public Map<String, CounterWord> counterWords(String text) {
-        return getGroupAndSortedWords(getWords(text));
+    public Map<String, CounterWord> counterWordMap(String text) {
+        return getGroupAndSortedWordMap(getWordMap(text));
     }
 
     public void convertPercent() {
-        words.entrySet().stream().
+        wordMap.entrySet().stream().
                 forEach(s -> s.getValue().setPercent((s.getValue().getNumberRepeat() / (double) countWords) * 100d));
     }
 
-    public Map<String, CounterWord> getWords() {
-        return words;
+    public Map<String, CounterWord> getWordMap() {
+        return wordMap;
     }
 
 

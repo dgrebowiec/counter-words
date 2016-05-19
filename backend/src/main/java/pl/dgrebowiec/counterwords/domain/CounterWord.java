@@ -13,6 +13,7 @@ public class CounterWord implements Comparable<CounterWord> {
 
     private double percent;
     private String translateWord;
+    private boolean learned;
 
     @Override
     public int compareTo(CounterWord word) {

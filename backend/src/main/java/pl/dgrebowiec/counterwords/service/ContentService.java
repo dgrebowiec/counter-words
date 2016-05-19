@@ -25,9 +25,9 @@ public class ContentService {
     }
 
     public List<CounterWord> getCounterWords() {
-        counterWordsProvider.counterWords(dataSource.getText());
+        counterWordsProvider.counterWordMap(dataSource.getText());
         counterWordsProvider.convertPercent();
-        return counterWordsProvider.getWords().entrySet().stream().map(s -> s.getValue()).collect(Collectors.toList());
+        return counterWordsProvider.getWordMap().entrySet().stream().map(s -> s.getValue()).collect(Collectors.toList());
     }
 
 
