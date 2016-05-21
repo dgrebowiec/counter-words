@@ -1,5 +1,9 @@
 package pl.dgrebowiec.counterwords.service
 
+import pl.dgrebowiec.counterwords.repository.LearnRepository
+import pl.dgrebowiec.counterwords.repository.TranslateRepository
+import pl.dgrebowiec.counterwords.repository.WordRepository
+
 //import pl.dgrebowiec.counterwords.domain.entity.Word
 //import pl.dgrebowiec.counterwords.repository.WordRepository
 import spock.lang.Specification
@@ -10,13 +14,14 @@ import spock.lang.Specification
  */
 class PersistenceServiceTest extends Specification {
 
-    /*def "Name"() {
-        given:
-            WordRepository wordRepository = Mock(WordRepository.class);
-        when:
-            Word word = wordRepository.findByWordTranslateValue("the");
-        then:
-            word.wordId ==  46002;
+    TranslateRepository translateRepository = Mock(TranslateRepository.class);
+    WordRepository wordRepository = Mock(WordRepository.class);
+    LearnRepository learnRepository = Mock(LearnRepository.class);
 
-    }*/
+    PersistenceService persistenceService = new PersistenceService(translateRepository, wordRepository, learnRepository);
+
+    def "saveLearn"() {
+
+    }
+
 }

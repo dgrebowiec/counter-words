@@ -50,7 +50,6 @@ public class PersistenceService {
         learn.setLearned(!learn.getLearned());
         learn.setWord(translate.getWord());
         learnRepository.save(learn);
-
     }
 
     @Transactional
@@ -76,12 +75,10 @@ public class PersistenceService {
          wordList.removeAll(translateList
                 .stream().map(s -> s.getValue()).collect(Collectors.toList()));
         return wordList;
-
     }
 
 
     public Translate saveWord(final String value) throws NonTransientDataAccessException {
-
         Translate translate = new Translate();
         translate.setWord(new Word());
         translate.setLanguage("PL");
@@ -92,7 +89,6 @@ public class PersistenceService {
 
     public List<String> getLearnedWords(final List<String> words) {
         List<String> learnedWordList = new ArrayList<>();
-
         translateRepository.findByWord_LearnList_LearnedTrueAndLanguageAndValueIn("PL", words);
         return learnedWordList;
     }

@@ -26,7 +26,7 @@ class CounterWordRest {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<CounterWord> getCounterWords() {
+    public List<CounterWord> getCounterWordList() {
         return webService.getContentService().getCounterWords();
     }
 
@@ -38,5 +38,10 @@ class CounterWordRest {
     @RequestMapping(method = RequestMethod.POST)
     public void learnedWord(@RequestBody String word) {
         webService.getPersistenceService().saveLearn(word);
+    }
+
+    @RequestMapping(value = "/showLearned", method = RequestMethod.GET)
+    public List<CounterWord> getCounterWordLearnedList() {
+        return webService.getContentService().getCounterWords();
     }
 }

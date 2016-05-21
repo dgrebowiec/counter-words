@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.dgrebowiec.counterwords.domain.CounterWord;
 import pl.dgrebowiec.counterwords.provider.CounterWordsProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +28,20 @@ public class WebServices {
     }
 
     public void saveWords() {
-        List<CounterWord> counterWords = contentService.getCounterWords();
-        List<String> wordList = counterWords.stream().map(s -> s.getWord()).collect(Collectors.toList());
+        List<CounterWord> counterWordList = contentService.getCounterWords();
+        List<String> wordList = counterWordList.stream().map(s -> s.getWord()).collect(Collectors.toList());
         persistenceService.saveWords(wordList);
+    }
+
+    public void getCounterWordLearnedList() {
+        List<String> learnedWordList = persistenceService.getLearnedWords(
+                contentService.getCounterWords().stream().map(s -> s.getWord()).collect(Collectors.toList())
+        );
+
+       /* List<CounterWord> counterWordLearnedList = new ArrayList<>();
+        learnedWordList.stream().forEach(
+                counterWordLearnedList.add(new )
+        );*/
+
     }
 }

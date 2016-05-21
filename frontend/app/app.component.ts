@@ -42,6 +42,10 @@ export class AppComponent {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         this.http.post('http://localhost:8090/words/', word,{headers:headers}).subscribe();
+    };
+
+    showLearned() {
+
     }
     dupa = 'dupa100';
 }
